@@ -1,0 +1,42 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<div class="container">
+  <div class="row justify-content-md-center px-4">
+
+    <div class="row justify-content-md-center p-4">
+      <div class="col-12 col-md-6 col-lg-5 mb-4"
+        *ngFor="let list of postsList | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalRecords }; let
+        i = index">
+        <!-- <div class="card h-100 box shadow corner1" (click)="viewBookDetails(list)"> -->
+        <div class="card h-100 box shadow corner1"  [routerLink]="['/post-detail/' + list.id]" >
+          <div class="card-body ">
+            <div class="">
+              <h6 class="card-title ">Title: <span class="highlight">{{ list.title }}</span></h6>
+
+              <!-- <div style="display: flex; align-items: center;">
+               <span class="font-weight-bold" (click)="viewBookDetails(list)">Key: {{ list?.key }}</span>
+             </div> -->
+              <!-- <button (click)="viewBookDetails(list)" class="btn rounded-circle shadow p-1 mr-1">
+               <img src="https://img.icons8.com/material-outlined/20/000066/visible--v1.png" />
+             </button> -->
+              <!-- <div class="row mt-2">
+                <h6 class="card-text font-weight-bold pt-2">
+                  Author: <span *ngFor="let item of list.author_name">{{item}}</span></h6>
+              </div> -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <pagination-controls *ngIf="totalRecords != 0" (pageChange)="page = $event"></pagination-controls>
+
+
+
+    </div>
+
+  </div>
+</div>

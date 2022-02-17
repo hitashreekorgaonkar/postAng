@@ -1,0 +1,38 @@
+<div class="row p-4 justify-content-start">
+
+  <ng-select [loading]="true" loadingText="Loading.." notFoundText="No items found" [multiple]="true"
+    [maxSelectedItems]="10" [closeOnSelect]="false" placeholder="Search" (add)='adde($event)'>
+    <ng-option *ngFor="let item of listImages" [value]="item">
+      <img src="{{item.thumbnailUrl}}" height="25">
+      &nbsp; <span [innerHTML]="item.id"></span> &nbsp; | &nbsp;
+      <small>Title: {{item.title}}</small>
+    </ng-option>
+  </ng-select>
+
+  <div *ngIf="selectImages.length == 0">
+    <div *ngFor="let list of postImages | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalRecords }; let
+   i = index" class="d-inline-flex p-2 bd-highlight">
+      <div class="card h-100 box shadow corner1">
+        <div class="card-body ">
+          <div class="">
+            <img src="{{list?.thumbnailUrl}}" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectImages.length != 0">
+    <div class="d-inline-flex p-2 bd-highlight" *ngFor="let list of selectImages | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalRecords2 }; let
+      j = index">
+      <div class="card h-100 box shadow corner1">
+        <div class="card-body ">
+          <div class="">
+            <img src="{{list?.thumbnailUrl}}" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
